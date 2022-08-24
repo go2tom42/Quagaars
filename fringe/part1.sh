@@ -85,7 +85,7 @@ chmod 755 /bitnami/mediawiki/extensions/Scribunto/includes/engines/LuaStandalone
 
 sudo /opt/bitnami/ctlscript.sh restart apache
 
-7z x /wikidump/fringepedianet_w-20170213-wikidump.7z -o/wikidump
+sudo -Hu bitnami 7z x /wikidump/fringepedianet_w-20170213-wikidump.7z -o/wikidump
 
 
 
