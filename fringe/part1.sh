@@ -91,7 +91,7 @@ sudo -Hu bitnami 7z x /wikidump/fringepedianet_w-20170213-wikidump.7z -o/wikidum
 
 # cd /wikidump/fringepedianet_w-20170213-wikidump
 
-# sed -i 's/#DDDDDD/#000000/g' ./fringepedianet_w-20170213-current.xml
+sed -i 's/http:/https:/g' ./fringepedianet_w-20170213-current.xml
 # sed -i 's/#DDD/#000/g' ./fringepedianet_w-20170213-current.xml
 
 cd /bitnami/mediawiki
