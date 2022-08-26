@@ -13,7 +13,7 @@ wget -O /home/bitnami/stack/mediawiki/favicon.ico https://raw.githubusercontent.
 sed -i 's/"Bitnami MediaWiki"/"12 Monkeys Wiki "/g' /bitnami/mediawiki/LocalSettings.php
 sed -i 's/"Bitnami_MediaWiki"/"12_Monkeys_Wiki "/g' /bitnami/mediawiki/LocalSettings.php
 sed -i 's/wiki.png/logo.svg/g' /bitnami/mediawiki/LocalSettings.php
-sed -i 's/"vector"/"Citizen"/g' /bitnami/mediawiki/LocalSettings.php
+# sed -i 's/"vector"/"Citizen"/g' /bitnami/mediawiki/LocalSettings.php
 echo '' >> /bitnami/mediawiki/LocalSettings.php
 echo '' >> /bitnami/mediawiki/LocalSettings.php
 echo '' >> /bitnami/mediawiki/LocalSettings.php
