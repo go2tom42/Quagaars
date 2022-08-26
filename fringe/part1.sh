@@ -58,7 +58,7 @@ echo '$wgEnableUploads = true;' >> /bitnami/mediawiki/LocalSettings.php
 echo '$wgUseImageMagick = true;' >> /bitnami/mediawiki/LocalSettings.php
 echo '$wgImageMagickConvertCommand = "/usr/bin/convert";' >> /bitnami/mediawiki/LocalSettings.php
 echo 'wfLoadExtension( "ImageMap" );' >> /bitnami/mediawiki/LocalSettings.php
-echo 'wfLoadSkin( "Citizen" );' >> /bitnami/mediawiki/LocalSettings.php
+# echo 'wfLoadSkin( "Citizen" );' >> /bitnami/mediawiki/LocalSettings.php
 
 cd /bitnami/mediawiki/extensions
 
