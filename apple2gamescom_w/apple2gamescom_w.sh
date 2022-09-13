@@ -6,4 +6,4 @@ if [ ! -f "$FILE" ]; then
     exit
 fi
 
-Echo "end of apple2gamescom_w.sh"
+echo "end of apple2gamescom_w.sh"
