@@ -1,6 +1,6 @@
 #!/bin/bash
 
-filename=${1}
+base=${1}
 date=${2}
 
 apt-get install git curl libjpeg-dev autoconf automake imagemagick gcc p7zip-full -y 
@@ -8,10 +8,10 @@ apt-get install git curl libjpeg-dev autoconf automake imagemagick gcc p7zip-ful
 mkdir /wikidump
 chmod 777 /wikidump
 
-wget -O /wikidump/site.sh https://raw.githubusercontent.com/go2tom42/Quagaars/master/$filename/$filename.sh
+wget -O /wikidump/site.sh https://raw.githubusercontent.com/go2tom42/Quagaars/master/$base/$base.sh
 
 chmod u+x /wikidump/site.sh
 
-source /wikidump/site.sh $date $filename
+source /wikidump/site.sh $base $date
 
 echo "end of start.sh"
