@@ -12,6 +12,6 @@ wget -O /wikidump/site.sh https://raw.githubusercontent.com/go2tom42/Quagaars/ma
 
 chmod u+x /wikidump/site.sh
 
-source /wikidump/site.sh $filename $date
+source /wikidump/site.sh $date $filename
 
 echo "end of start.sh"
