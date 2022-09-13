@@ -1,6 +1,6 @@
 #!/bin/bash
 
-base=`basename "$0"`
+base=${2}
 date=${1}
 
 FILE=/wikidump/$base-$date-wikidump.7z
