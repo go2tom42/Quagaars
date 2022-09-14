@@ -35,9 +35,6 @@ DummyFandoomMainpageTags=false
 EmbedVideo=true
 Collection=false
 debug=false
-echo
-pause "pause 1"
-
 
 # ############################################################################################
 wget -O /home/bitnami/stack/mediawiki/resources/assets/logo.$logoextension https://raw.githubusercontent.com/go2tom42/Quagaars/master/$base/logo.$logoextension
@@ -65,8 +62,7 @@ echo '# Prevent new user registrations except by sysops' >> /bitnami/mediawiki/L
 echo '$wgGroupPermissions["*"]["createaccount"] = false;' >> /bitnami/mediawiki/LocalSettings.php
 echo '$wgHTTPTimeout = 550;' >> /bitnami/mediawiki/LocalSettings.php
 echo '$wgAsyncHTTPTimeout = 550;' >> /bitnami/mediawiki/LocalSettings.php
-echo 
-pause "pause 2"
+
 if [ "$debug" = true ] ; then
     echo '$wgDebugLogFile = "/var/log/mediawiki-debug.log";' >> /bitnami/mediawiki/LocalSettings.php
 fi
@@ -182,43 +178,26 @@ if [ "$theme" = "Citizen" ] ; then
 	cd /bitnami/mediawiki/skins
 	sudo -Hu bitnami git clone https://github.com/StarCitizenTools/mediawiki-skins-Citizen Citizen
 fi
-echo
-pause "pause 3"
-
 
 new_string="ServerName www.example.com\n  AllowEncodedSlashes NoDecode"
 sed -i "s/ServerName www.example.com/$new_string/" /opt/bitnami/apache2/conf/vhosts/mediawiki-vhost.conf
 
 sudo /opt/bitnami/ctlscript.sh restart apache
 
-echo
-pause "pause 4"
-
 sudo -Hu bitnami 7z x /wikidump/$base-$date-wikidump.7z -o/wikidump
-echo
-pause "pause 5"
 
 sed -i 's/http:/https:/g' /wikidump/$base-$date-wikidump/$base-$date-current.xml
 
 cd /bitnami/mediawiki
-echo
-
-pause "pause 6"
-
-echo sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importDump.php --conf ./LocalSettings.php /wikidump/$base-$date-wikidump/$base-$date-current.xml --username-prefix="" 
-pause "pause 7"
-
 
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importDump.php --conf ./LocalSettings.php /wikidump/$base-$date-wikidump/$base-$date-current.xml --username-prefix="" 
-sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importImages.php /wikidump/images
+sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importImages.php /wikidump/$base-$date-wikidump/images
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/updateArticleCount.php --update
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/rebuildall.php
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/update.php
 echo
-pause "pause 8"
 
 chmod -R 777 /bitnami/mediawiki/images/thumb
 curl https://$url -o /dev/null
-
 
 echo "end of apple2gamescom_w.sh"
