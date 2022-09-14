@@ -43,8 +43,8 @@ pause
 wget -O /home/bitnami/stack/mediawiki/resources/assets/logo.$logoextension https://raw.githubusercontent.com/go2tom42/Quagaars/master/$base/logo.$logoextension
 wget -O /home/bitnami/stack/mediawiki/favicon.ico https://raw.githubusercontent.com/go2tom42/Quagaars/master/$base/favicon.ico	
 
-sed -i 's/"Bitnami MediaWiki"/"$title"/g' /bitnami/mediawiki/LocalSettings.php
-sed -i 's/"Bitnami_MediaWiki"/"$titlenospace"/g' /bitnami/mediawiki/LocalSettings.php
+sed -i 's/"Bitnami MediaWiki"/"${title}"/g' /bitnami/mediawiki/LocalSettings.php
+sed -i 's/"Bitnami_MediaWiki"/"${titlenospace}"/g' /bitnami/mediawiki/LocalSettings.php
 sed -i 's/wiki.png/logo.$logoextension/g' /bitnami/mediawiki/LocalSettings.php
 sed -i 's/"vector"/"$vector"/g' /bitnami/mediawiki/LocalSettings.php
 echo '' >> /bitnami/mediawiki/LocalSettings.php
