@@ -30,8 +30,8 @@ DummyFandoomMainpageTags=true
 EmbedVideo=true
 Collection=true
 debug=true
-echo "pause 1"
-pause
+read -p "pause 1"
+
 
 # ############################################################################################
 wget -O /home/bitnami/stack/mediawiki/resources/assets/logo.$logoextension https://raw.githubusercontent.com/go2tom42/Quagaars/master/$base/logo.$logoextension
@@ -59,8 +59,8 @@ echo '$wgGroupPermissions["*"]["createaccount"] = false;' >> /bitnami/mediawiki/
 echo '$wgHTTPTimeout = 550;' >> /bitnami/mediawiki/LocalSettings.php
 echo '$wgAsyncHTTPTimeout = 550;' >> /bitnami/mediawiki/LocalSettings.php
 echo '$wgPFEnableStringFunctions = true;' >> /bitnami/mediawiki/LocalSettings.php
-echo "pause 2"
-pause
+read -p "pause 2"
+
 if [ "$debug" = true ] ; then
     echo '$wgDebugLogFile = "/var/log/mediawiki-debug.log";' >> /bitnami/mediawiki/LocalSettings.php
 fi
@@ -182,31 +182,31 @@ if [ "$theme" = "Citizen" ] ; then
 	cd /bitnami/mediawiki/skins
 	sudo -Hu bitnami git clone https://github.com/StarCitizenTools/mediawiki-skins-Citizen Citizen
 fi
-echo "pause 3"
-pause
+read -p "pause 3"
+
 
 new_string="ServerName www.example.com\n  AllowEncodedSlashes NoDecode"
 sed -i "s/ServerName www.example.com/$new_string/" /opt/bitnami/apache2/conf/vhosts/mediawiki-vhost.conf
 
 sudo /opt/bitnami/ctlscript.sh restart apache
 
-echo "pause 4"
-pause
+read -p "pause 4"
+
 sudo -Hu bitnami 7z x /wikidump/$base-$date-wikidump.7z -o/wikidump
-echo "pause 5"
-pause
+read -p "pause 5"
+
 sed -i 's/http:/https:/g' /wikidump/$base-$date-wikidump/$base-$date-current.xml
 
 cd /bitnami/mediawiki
-echo "pause 6"
-pause
+read -p "pause 6"
+
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importDump.php --conf ./LocalSettings.php /wikidump/$base-$date-wikidump-current.xml --username-prefix="" 
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importImages.php /wikidump/images
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/updateArticleCount.php --update
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/rebuildall.php
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/update.php
-echo "pause 7"
-pause
+read -p "pause 7"
+
 curl https://$url -o /dev/null
 chmod -R 777 /bitnami/mediawiki/images/thumb
 
