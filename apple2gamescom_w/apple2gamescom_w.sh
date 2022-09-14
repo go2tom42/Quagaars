@@ -44,7 +44,7 @@ sed -i "s/Bitnami MediaWiki/${title}/g" /bitnami/mediawiki/LocalSettings.php
 sed -i "s/Bitnami_MediaWiki/${titlenospace}/g" /bitnami/mediawiki/LocalSettings.php
 sed -i "s/192.168.1.18/${url}/g" /bitnami/mediawiki/LocalSettings.php
 sed -i 's/wiki.png/logo.$logoextension/g' /bitnami/mediawiki/LocalSettings.php
-sed -i "s/vector/$vector/g" /bitnami/mediawiki/LocalSettings.php
+sed -i "s/vector/$theme/g" /bitnami/mediawiki/LocalSettings.php
 echo '' >> /bitnami/mediawiki/LocalSettings.php
 echo '' >> /bitnami/mediawiki/LocalSettings.php
 echo '' >> /bitnami/mediawiki/LocalSettings.php
