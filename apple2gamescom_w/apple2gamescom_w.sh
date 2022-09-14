@@ -1,9 +1,9 @@
 #!/bin/bash
 
 function pause(){
-   read -p "$*"  < /dev/tty
+   read -p "$*" </dev/tty
 }
-read -p "Press enter to continue"  < /dev/tty
+read -p "Press enter to continue" </dev/tty
 
 base=${1}
 date=${2}
