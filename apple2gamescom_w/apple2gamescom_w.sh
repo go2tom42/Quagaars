@@ -120,7 +120,7 @@ if [ "$WikiaLikeGallery" = true ] ; then
 fi
 
 if [ "$VisualEditor" = true ] ; then
-    echo 'wfLoadExtension( "VisualEditor" );' >> /bitnami/mediawiki/LocalSettings.php'
+    echo 'wfLoadExtension( "VisualEditor" );' >> /bitnami/mediawiki/LocalSettings.php
 fi
 
 if [ "$Variables" = true ] ; then
