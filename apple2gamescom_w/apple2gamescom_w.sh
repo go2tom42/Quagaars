@@ -211,7 +211,7 @@ cd /bitnami/mediawiki
 echo
 pause "pause 6"
 
-sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importDump.php --conf ./LocalSettings.php /wikidump/$base-$date-wikidump-current.xml --username-prefix="" 
+sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importDump.php --conf ./LocalSettings.php /wikidump/$base-$date-wikidump/$base-$date-wikidump-current.xml --username-prefix="" 
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importImages.php /wikidump/images
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/updateArticleCount.php --update
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/rebuildall.php
