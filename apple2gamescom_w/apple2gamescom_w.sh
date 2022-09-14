@@ -168,12 +168,6 @@ if [ "$TemplateStyles" = true ] ; then
 	sudo -Hu bitnami git clone -b REL1_37 https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateStyles
 fi
 
-if [ "$Variables" = true ] ; then
-    echo 'wfLoadExtension( "Variables" );' >> /bitnami/mediawiki/LocalSettings.php
-	cd /bitnami/mediawiki/extensions
-	sudo -Hu bitnami git clone -b REL1_37 https://gerrit.wikimedia.org/r/mediawiki/extensions/Variables
-fi
-
 if [ "$ImageMap" = true ] ; then
     echo 'wfLoadExtension( "ImageMap" );' >> /bitnami/mediawiki/LocalSettings.php
 	
