@@ -203,7 +203,12 @@ sed -i 's/http:/https:/g' /wikidump/$base-$date-wikidump/$base-$date-current.xml
 
 cd /bitnami/mediawiki
 echo
+
 pause "pause 6"
+
+echo sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importDump.php --conf ./LocalSettings.php /wikidump/$base-$date-wikidump/$base-$date-current.xml --username-prefix="" 
+pause "pause 7"
+
 
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importDump.php --conf ./LocalSettings.php /wikidump/$base-$date-wikidump/$base-$date-current.xml --username-prefix="" 
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/importImages.php /wikidump/images
