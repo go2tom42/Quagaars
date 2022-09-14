@@ -147,6 +147,7 @@ li#n-Site-Search {display:none}
 #ca-viewsource {display:none}
 #ca-history {display:none}
 #p-personal {display:none}
+#p-search {display:none}
 "@
 $text2 = @"
 * empty section
