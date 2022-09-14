@@ -217,9 +217,10 @@ sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/updateArticleCount.php -
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/rebuildall.php
 sudo -Hu bitnami php /opt/bitnami/mediawiki/maintenance/update.php
 echo
-pause "pause 7"
+pause "pause 8"
 
-curl https://$url -o /dev/null
 chmod -R 777 /bitnami/mediawiki/images/thumb
+curl https://$url -o /dev/null
+
 
 echo "end of apple2gamescom_w.sh"
