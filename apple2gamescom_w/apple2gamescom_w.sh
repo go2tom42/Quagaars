@@ -3,6 +3,7 @@
 function pause(){
    read -p "$*"
 }
+read -p "Press enter to continue"
 
 base=${1}
 date=${2}
