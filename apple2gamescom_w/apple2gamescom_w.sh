@@ -15,26 +15,26 @@ title=apple2games
 titlenospace=apple2games
 logoextension=gif
 theme=vector
-url="apple2games.off-line.site"
+url=apple2games.off-line.site
 
 
-ParserFunctions=true
-TemplateStyles=true
-PortableInfobox=true
-Capiunto=true
-TemplateData=true
-Cite=true
-PageImages=true
-DisplayTitle=true
-WikiaLikeGallery=true
-VisualEditor=true
-Variables=true
-Scribunto=true
-TabberNeue=true
-DummyFandoomMainpageTags=true
-EmbedVideo=true
-Collection=true
-debug=true
+ParserFunctions=false
+TemplateStyles=false
+PortableInfobox=false
+Capiunto=false
+TemplateData=false
+Cite=false
+PageImages=false
+DisplayTitle=false
+WikiaLikeGallery=false
+VisualEditor=false
+Variables=false
+Scribunto=false
+TabberNeue=false
+DummyFandoomMainpageTags=false
+EmbedVideo=false
+Collection=false
+debug=false
 echo
 pause "pause 1"
 
