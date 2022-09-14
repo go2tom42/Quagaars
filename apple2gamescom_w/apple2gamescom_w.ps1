@@ -140,7 +140,7 @@ function Invoke-Logout() {
     $object = Invoke-WebRequest $uri -Method Get -Body $body -WebSession (Get-WebSession)
 }
 
-$summary = ''
+$summary = 'bob'
 $text1 = @"
 #ca-talk {display:none}
 li#n-Site-Search {display:none}
