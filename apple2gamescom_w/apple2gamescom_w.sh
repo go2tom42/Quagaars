@@ -32,7 +32,7 @@ Variables=false
 Scribunto=false
 TabberNeue=false
 DummyFandoomMainpageTags=false
-EmbedVideo=false
+EmbedVideo=true
 Collection=false
 debug=false
 echo
