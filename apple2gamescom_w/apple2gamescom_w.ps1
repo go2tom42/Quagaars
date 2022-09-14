@@ -141,8 +141,12 @@ function Invoke-Logout() {
 
 $summary = ''
 $text1 = @"
+#ca-talk {display:none}
 li#n-Site-Search {display:none}
 #p-tb {display:none}
+#ca-viewsource {display:none}
+#ca-history {display:none}
+#p-personal {display:none}
 "@
 $text2 = @"
 * empty section
