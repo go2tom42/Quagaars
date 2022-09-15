@@ -4,6 +4,8 @@ Param
     [Parameter(Mandatory = $False)] [string] $gitHubToken
 )
 
+if(-not (Get-Module Posh-SSH -ListAvailable)){Install-Module -Name Posh-SSH -Force}
+
 function Get-GitHubRepositoryFileContent {
     [CmdletBinding()]
     Param
