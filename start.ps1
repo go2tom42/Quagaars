@@ -1,10 +1,11 @@
 [CmdletBinding()]
 Param
+(
     [Parameter(Mandatory = $True)] [string] $dotSourceFilePath,
     [Parameter(Mandatory = $False)] [string] $gitHubToken
 )
 
-if(-not (Get-Module Posh-SSH -ListAvailable)){Install-Module -Name Posh-SSH -Force}
+if (-not (Get-Module Posh-SSH -ListAvailable)) { Install-Module -Name Posh-SSH -Force }
 
 function Get-GitHubRepositoryFileContent {
     [CmdletBinding()]
@@ -13,29 +14,32 @@ function Get-GitHubRepositoryFileContent {
         [Parameter(Mandatory = $True)] [string] $path,
         [Parameter(Mandatory = $False)] [string] $gitHubToken
     )
-
+    $path = "apple2gamescom_w"
     $uri = "https://api.github.com/repos/go2tom42/Quagaars/contents/$path/variables.ps1`?ref=master" # Need to escape the ? that indicates an http query
+    $uri
     $uri = [uri]::EscapeUriString($uri)
     if ($PSBoundParameters.ContainsKey('gitHubtoken')) {
         $base64Token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($gitHubToken)"))
-        $headers = @{'Authorization' = "Basic $base64Token"}
+        $headers = @{'Authorization' = "Basic $base64Token" }
         $splat = @{
-            Method = 'Get'
-            Uri = $uri
-            Headers = $headers
+            Method      = 'Get'
+            Uri         = $uri
+            Headers     = $headers
             ContentType = 'application/json'
         }
-    } else {
+    }
+    else {
         $splat = @{
-            Method = 'Get'
-            Uri = $uri
+            Method      = 'Get'
+            Uri         = $uri
             ContentType = 'application/json'
         }
     } 
     
     try {
         Invoke-RestMethod @splat
-    } catch {
+    }
+    catch {
         Write-Warning "Unable to get file content."   
         $ErrorMessage = $_.Exception.Message
         Write-Warning "$ErrorMessage"
@@ -45,34 +49,36 @@ function Get-GitHubRepositoryFileContent {
 
 if ($PSBoundParameters.ContainsKey('gitHubToken')) {
     $splat = @{
-        gitHubToken = $gitHubToken
-        gitHubRepository = $dotSourceFileGitHubRepository
-        path = $dotSourceFilePath
-        branch = $dotSourceFileBranch
+        gitHubToken      = $gitHubToken
+        gitHubRepository = 'go2tom42/Quagaars'
+        path             = $dotSourceFilePath
+        branch           = 'master'
     }
-} else {
+}
+else {
     $splat = @{
-        gitHubRepository = $dotSourceFileGitHubRepository
-        path = $dotSourceFilePath
-        branch = $dotSourceFileBranch
+        gitHubRepository = 'go2tom42/Quagaars'
+        path             = "$dotSourceFilePath/variables.ps1"
+        branch           = 'master'
     }
 }
 
-$dotSourceFileData = Get-GitHubRepositoryFileContent @splat
-[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($dotSourceFileData.content)) | Out-File -FilePath $dotSourceFilePath.Split('/')[-1] -Force
-$dotSourceFile = Get-Item -Path $dotSourceFilePath.Split('/')[-1]
-
-if (Test-Path -Path $dotSourceFilePath.Split('/')[-1]) {
+$dotSourceFileData = Get-GitHubRepositoryFileContent $dotSourceFilePath
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($dotSourceFileData.content)) | Out-File -FilePath $dotSourceFileData.Path.Split('/')[-1] -Force
+$dotSourceFile = Get-Item -Path $dotSourceFileData.path.Split('/')[-1]
+if (Test-Path -Path $dotSourceFileData.path.Split('/')[-1]) {
     try {
         . $dotSourceFile.FullName
-        Remove-Item -Path $dotSourceFilePath.Split('/')[-1] -Recurse -Force
-    } catch {
+        Remove-Item -Path $dotSourceFileData.path.Split('/')[-1] -Recurse -Force
+    }
+    catch {
         Write-Warning "Unable to dot source file: $dotSourceFilePath."
         $ErrorMessage = $_.Exception.Message
         Write-Warning "$ErrorMessage"
         break
     }
-} else {
+}
+else {
     Write-Warning "Could not find path to file: $dotSourceFilePath."
     $ErrorMessage = $_.Exception.Message
     Write-Warning "$ErrorMessage"
