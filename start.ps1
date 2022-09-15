@@ -14,9 +14,7 @@ function Get-GitHubRepositoryFileContent {
         [Parameter(Mandatory = $True)] [string] $path,
         [Parameter(Mandatory = $False)] [string] $gitHubToken
     )
-    $path = "apple2gamescom_w"
     $uri = "https://api.github.com/repos/go2tom42/Quagaars/contents/$path/variables.ps1`?ref=master" # Need to escape the ? that indicates an http query
-    $uri
     $uri = [uri]::EscapeUriString($uri)
     if ($PSBoundParameters.ContainsKey('gitHubtoken')) {
         $base64Token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($gitHubToken)"))
