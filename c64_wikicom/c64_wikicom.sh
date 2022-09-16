@@ -5,36 +5,16 @@ function pause(){
 }
 
 
+
 base=${1}
 date=${2}
 
 FILE=/wikidump/$base-$date-wikidump.7z
 [ -f "$FILE" ] || { echo "File $FILE not found" && exit 0; }
 
-title=apple2games
-titlenospace=apple2games
-logoextension=gif
-theme=vector
-url=apple2games.off-line.site
+wget -O ./variables.sh https://raw.githubusercontent.com/go2tom42/Quagaars/master/$base/variables.sh
 
-
-ParserFunctions=false
-TemplateStyles=false
-PortableInfobox=false
-Capiunto=false
-TemplateData=false
-Cite=false
-PageImages=false
-DisplayTitle=false
-WikiaLikeGallery=false
-VisualEditor=false
-Variables=false
-Scribunto=false
-TabberNeue=false
-DummyFandoomMainpageTags=false
-EmbedVideo=true
-Collection=false
-debug=false
+source ./variables.sh
 
 # ############################################################################################
 wget -O /home/bitnami/stack/mediawiki/resources/assets/logo.$logoextension https://raw.githubusercontent.com/go2tom42/Quagaars/master/$base/logo.$logoextension
