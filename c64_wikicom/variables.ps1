@@ -2,6 +2,7 @@ $base="c64_wikicom"
 $date="20220906"
 $title="C64-Wiki"
 $zimname='"C64-Wiki"'
+$safetitle="c64-wiki"
 $zimurl='"https://c64-wiki.off-line.site/wiki/Main_Page"'
 $url="c64-wiki.off-line.site"
 $description='"c64-wiki.com"'
