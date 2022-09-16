@@ -202,7 +202,7 @@ if [ "$theme" = "Medik" ] ; then
     echo 'wfLoadSkin( "Medik" );' >> /bitnami/mediawiki/LocalSettings.php
 	echo '$wgMedikColor = "#020085";' >> /bitnami/mediawiki/LocalSettings.php
 	cd /bitnami/mediawiki/skins
-	sudo -Hu bitnami git clone git clone https://bitbucket.org/wikiskripta/medik.git Medik
+	sudo -Hu bitnami git clone https://bitbucket.org/wikiskripta/medik.git Medik
 fi
 
 
