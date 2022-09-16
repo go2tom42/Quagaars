@@ -1,4 +1,4 @@
-collection: apple2games-off-line-site
+collection: C64-Wiki-off-line-site
 workers: 16
 newContext: page
 waitUntil: domcontentloaded
@@ -6,7 +6,7 @@ depth: -1
 timeout: 90
 behaviors: autoplay,autofetch,siteSpecific
 behaviorTimeout: 90
-url: https://apple2games.off-line.site/wiki/Main_Page
+url: https://C64-Wiki.off-line.site/wiki/Main_Page
 cwd: /crawls/site
 saveState: always
 combineWARC: true
