@@ -116,8 +116,8 @@ Set-SFTPItem -SessionId $warcgz2 -Destination "/home/tom42/Desktop/Wikidump" -Pa
 # filter and convert .warc.gz to .wacz to .warc to .zim
 $ssh169 = (New-SSHSession -Computer 192.168.1.169 -AcceptKey -Credential $credObject3).SessionId
 Invoke-SSHCommand -Command "wget -O /home/tom42/Desktop/Wikidump/$title.css https://raw.githubusercontent.com/go2tom42/Quagaars/master/$base/$base.css" -SessionId $ssh169 -ShowStandardOutputStream -ShowErrorOutputStream -Timeout 3600
-Invoke-SSHCommand -Command "warcfilter -U $safetitle.off-line.site /home/tom42/Desktop/Wikidump/$safetitle-off-line-site_0.warc.gz > /home/tom42/Desktop/Wikidump/$safetitle-off-line-site.wacz" -SessionId $ssh169 -ShowStandardOutputStream -ShowErrorOutputStream -Timeout 3600
-Invoke-SSHCommand -Command "warc2warc -Z /home/tom42/Desktop/Wikidump/$title-off-line-site.wacz > /home/tom42/Desktop/Wikidump/$safetitle-off-line-site.warc" -SessionId $ssh169 -ShowStandardOutputStream -ShowErrorOutputStream -Timeout 3600
+Invoke-SSHCommand -Command "warcfilter -U $safetitle.off-line.site /home/tom42/Desktop/Wikidump/$title-off-line-site_0.warc.gz > /home/tom42/Desktop/Wikidump/$safetitle-off-line-site.wacz" -SessionId $ssh169 -ShowStandardOutputStream -ShowErrorOutputStream -Timeout 3600
+Invoke-SSHCommand -Command "warc2warc -Z /home/tom42/Desktop/Wikidump/$safetitle-off-line-site.wacz > /home/tom42/Desktop/Wikidump/$safetitle-off-line-site.warc" -SessionId $ssh169 -ShowStandardOutputStream -ShowErrorOutputStream -Timeout 3600
 Invoke-SSHCommand -Command "warc2zim /home/tom42/Desktop/Wikidump/$safetitle-off-line-site.warc --custom-css /home/tom42/Desktop/Wikidump/$title.css --name $zimname -i off-line.site -u $zimurl --favicon https://github.com/go2tom42/Quagaars/raw/master/$base/zimlogo.png --output /home/tom42/Desktop/Wikidump --description $description --publisher 'atari-guy' --creator 'atari-guy'" -SessionId $ssh169 -ShowStandardOutputStream -ShowErrorOutputStream -Timeout 3600
 
 # .zim file to main PC
