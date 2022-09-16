@@ -1,8 +1,8 @@
-title=apple2games
-titlenospace=apple2games
+title=C64-Wiki
+titlenospace=c64-wiki
 logoextension=gif
 theme=vector
-url=apple2games.off-line.site
+url=c64-wiki.off-line.site
 
 ParserFunctions=false
 TemplateStyles=false
