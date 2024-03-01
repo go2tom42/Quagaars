@@ -56,12 +56,15 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         choco uninstall Boxstarter.Bootstrapper
         choco uninstall Boxstarter.WinConfig
         choco uninstall Boxstarter.Common
+        Start-Sleep -Seconds 5
         if (Test-Path "$env:ProgramFiles\Notepad++\notepad++.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Notepad++\notepad++.exe" }
         if (Test-Path "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE" }
         if (test-path "HKLM:\SOFTWARE\Mozilla\Mozilla Firefox") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-SetDefaultBrowser.exe" HKLM Firefox-308046B0AF4A39CB }
         if (Test-Path "$env:ProgramFiles\Google\Chrome\Application\chrome.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Google\Chrome\Application\chrome.exe"}
         taskkill /f /im OneDrive.exe
+        Start-Sleep -Seconds 5
         winget uninstall Microsoft.OneDrive --accept-source-agreements
+        Start-Sleep -Seconds 5
         Restart-Computer -Force
 
     }
