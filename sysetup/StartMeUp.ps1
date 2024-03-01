@@ -44,10 +44,7 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         import-Module -Name "c:\ProgramData\Boxstarter\Boxstarter.Chocolatey"
         Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar -EnableShowRecentFilesInQuickAccess -EnableShowFrequentFoldersInQuickAccess
         Set-BoxstarterTaskbarOptions -UnLock 
-        
-        Set-BoxstarterTaskbarOptions -NoAutoHide 
         Set-BoxstarterTaskbarOptions -Size "Small" -DisableSearchBox -Combine Never 
-        HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
         Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" -Name "ShellFeedsTaskbarViewMode" -Value 2 -Force
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Value 0 -Force
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSecondsInSystemClock" -Value 1 -Force
