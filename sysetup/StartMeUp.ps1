@@ -41,7 +41,6 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\" -Name "AllowInsecureGuestAuth" -Value 1
         $unpin_taskbar_apps = "Microsoft Store", "Microsoft Edge", "Mail"
         Foreach ($thisapp in $unpin_taskbar_apps) {((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | Where-Object { $_.Name -eq $thisapp }).Verbs() | Where-Object { $_.Name.replace('&', '') -match 'Unpin from taskbar' } | ForEach-Object { $_.DoIt(); $exec = $true }}
-        choco install boxstarter
         import-Module -Name "c:\ProgramData\Boxstarter\Boxstarter.Chocolatey"
         Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar -EnableShowRecentFilesInQuickAccess -EnableShowFrequentFoldersInQuickAccess
         Set-BoxstarterTaskbarOptions -UnLock 
@@ -52,21 +51,11 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" -Name "ShellFeedsTaskbarViewMode" -Value 2 -Force
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Value 0 -Force
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSecondsInSystemClock" -Value 1 -Force
-        choco uninstall Boxstarter
-        choco uninstall Boxstarter.HyperV
-        choco uninstall Boxstarter.Chocolatey
-        choco uninstall Boxstarter.Bootstrapper
-        choco uninstall Boxstarter.WinConfig
-        choco uninstall Boxstarter.Common
-        Start-Sleep -Seconds 5
+        choco uninstall Boxstarter --remove-dependencies
         if (Test-Path "$env:ProgramFiles\Notepad++\notepad++.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Notepad++\notepad++.exe" }
         if (Test-Path "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE" }
         if (test-path "HKLM:\SOFTWARE\Mozilla\Mozilla Firefox") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-SetDefaultBrowser.exe" HKLM Firefox-308046B0AF4A39CB }
         if (Test-Path "$env:ProgramFiles\Google\Chrome\Application\chrome.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Google\Chrome\Application\chrome.exe"}
-        taskkill /f /im OneDrive.exe
-        Start-Sleep -Seconds 5
-        Get-AppxPackage Microsoft.OneDrive | Remove-AppxPackage
-        Start-Sleep -Seconds 5
         Restart-Computer -Force
 
     }
