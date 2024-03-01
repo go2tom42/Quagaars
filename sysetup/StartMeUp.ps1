@@ -45,9 +45,17 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         Set-BoxstarterTaskbarOptions -UnLock 
         
         Set-BoxstarterTaskbarOptions -NoAutoHide 
-        Set-BoxstarterTaskbarOptions -Size "Large" -DisableSearchBox
-        choco uninstall boxstarter
-
+        Set-BoxstarterTaskbarOptions -Size "Small" -DisableSearchBox -Combine Never 
+        HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" -Name "ShellFeedsTaskbarViewMode" -Value 2 -Force
+        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Value 0 -Force
+        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSecondsInSystemClock" -Value 1 -Force
+        choco uninstall Boxstarter
+        choco uninstall Boxstarter.HyperV
+        choco uninstall Boxstarter.Chocolatey
+        choco uninstall Boxstarter.Bootstrapper
+        choco uninstall Boxstarter.WinConfig
+        choco uninstall Boxstarter.Common
         if (Test-Path "$env:ProgramFiles\Notepad++\notepad++.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Notepad++\notepad++.exe" }
         if (Test-Path "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE" }
         if (test-path "HKLM:\SOFTWARE\Mozilla\Mozilla Firefox") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-SetDefaultBrowser.exe" HKLM Firefox-308046B0AF4A39CB }
