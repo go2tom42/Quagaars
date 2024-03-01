@@ -20,7 +20,13 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         Start-Process -FilePath "$env:TEMP\ep_setup.exe" -Wait
         Start-Sleep -Seconds 5
         reg import "$env:TEMP\ExplorerPatcher.reg"
+        Start-Process -FilePath "C:\Windows\Resources\Themes\themeA.theme" -Wait
+        Copy-Item -Path "$env:TEMP\ExplorerPatcher.reg" -Destination "$env:USERPROFILE\Desktop\ImportMeIntoExplorerPatcher.reg"
+        if (Test-Path "$env:ProgramFiles\Notepad++\notepad++.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Notepad++\notepad++.exe" }
+        if (Test-Path "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE" }
+        if (Test-Path "$env:ProgramFiles\Mozilla Firefox\firefox.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Mozilla Firefox\firefox.exe" }
         Restart-Computer -Force
+    
     }
     if (((Get-ComputerInfo | Select-Object -expand OsName) -match 11)) { Set-w11basic }
     if (((Get-ComputerInfo | Select-Object -expand OsName) -match 10)) { Set-w10basic }
