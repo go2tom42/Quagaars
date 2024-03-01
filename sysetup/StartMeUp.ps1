@@ -65,7 +65,7 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         if (Test-Path "$env:ProgramFiles\Google\Chrome\Application\chrome.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Google\Chrome\Application\chrome.exe"}
         taskkill /f /im OneDrive.exe
         Start-Sleep -Seconds 5
-        &CMD /c pwsh -command winget uninstall Microsoft.OneDrive --accept-source-agreements
+        &"$env:LOCALAPPDATA\Microsoft\WindowsApps\winget.exe" uninstall Microsoft.OneDrive --accept-source-agreements
         Start-Sleep -Seconds 5
         Restart-Computer -Force
 
