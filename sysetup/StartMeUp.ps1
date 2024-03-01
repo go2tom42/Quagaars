@@ -20,7 +20,7 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         Start-Process -FilePath "$env:TEMP\ep_setup.exe" -Wait
         Start-Sleep -Seconds 5
         reg import "$env:TEMP\ExplorerPatcher.reg"
-    
+        Restart-Computer -Force
     }
     if (((Get-ComputerInfo | Select-Object -expand OsName) -match 11)) { Set-w11basic }
     if (((Get-ComputerInfo | Select-Object -expand OsName) -match 10)) { Set-w10basic }
