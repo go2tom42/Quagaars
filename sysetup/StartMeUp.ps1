@@ -34,6 +34,8 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         Install-Choco
         (New-Object System.Net.WebClient).DownloadFile("https://t0m.pw/BasicChoco", "$env:TEMP\packages.config")  
         Choco install "$env:TEMP\packages.config"
+        Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+        refreshenv
         (New-Object System.Net.WebClient).DownloadFile("https://t0m.pw/shutup10", "$env:TEMP\ooshutup10.cfg")  
         OOSU10 "$env:TEMP\ooshutup10.cfg" /quiet
         Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\" -Name "AllowInsecureGuestAuth" -Value 1
