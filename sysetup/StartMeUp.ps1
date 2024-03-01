@@ -15,6 +15,11 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         Choco install "$env:TEMP\packages.config"
         (New-Object System.Net.WebClient).DownloadFile("https://t0m.pw/shutup10", "$env:TEMP\ooshutup10.cfg")  
         OOSU10 "$env:TEMP\ooshutup10.cfg" /quiet
+        (New-Object System.Net.WebClient).DownloadFile("https://t0m.pw/ExplorerPatcher", "$env:TEMP\ExplorerPatcher.reg")
+        (New-Object System.Net.WebClient).DownloadFile("https://github.com/valinet/ExplorerPatcher/releases/latest/download/ep_setup.exe", "$env:TEMP\ep_setup.exe")
+        Start-Process -FilePath "$env:TEMP\ep_setup.exe" -Wait
+        Start-Sleep -Seconds 5
+        reg import "$env:TEMP\ExplorerPatcher.reg"
     
     }
     if (((Get-ComputerInfo | Select-Object -expand OsName) -match 11)) { Set-w11basic }
