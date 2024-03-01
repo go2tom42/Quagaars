@@ -36,9 +36,21 @@ if (($arguments -eq "w10-basic") -or ($arguments -eq "w11-basic")) {
         Choco install "$env:TEMP\packages.config"
         (New-Object System.Net.WebClient).DownloadFile("https://t0m.pw/shutup10", "$env:TEMP\ooshutup10.cfg")  
         OOSU10 "$env:TEMP\ooshutup10.cfg" /quiet
+        Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\" -Name "AllowInsecureGuestAuth" -Value 1
+        $unpin_taskbar_apps = "Microsoft Store", "Microsoft Edge", "Mail"
+        Foreach ($thisapp in $unpin_taskbar_apps) {((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | Where-Object { $_.Name -eq $thisapp }).Verbs() | Where-Object { $_.Name.replace('&', '') -match 'Unpin from taskbar' } | ForEach-Object { $_.DoIt(); $exec = $true }}
+        choco install boxstarter
+        import-Module -Name "c:\ProgramData\Boxstarter\Boxstarter.Chocolatey"
+        Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar -EnableShowRecentFilesInQuickAccess -EnableShowFrequentFoldersInQuickAccess
+        Set-BoxstarterTaskbarOptions -UnLock 
+        
+        Set-BoxstarterTaskbarOptions -NoAutoHide 
+        Set-BoxstarterTaskbarOptions -Size "Large" -DisableSearchBox
+        choco uninstall boxstarter
+
         if (Test-Path "$env:ProgramFiles\Notepad++\notepad++.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Notepad++\notepad++.exe" }
         if (Test-Path "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\totalcmd\TOTALCMD64.EXE" }
-        if (Test-Path "$env:ProgramFiles\Mozilla Firefox\firefox.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Mozilla Firefox\firefox.exe" }
+        if (test-path "HKLM:\SOFTWARE\Mozilla\Mozilla Firefox") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-SetDefaultBrowser.exe" HKLM Firefox-308046B0AF4A39CB }
         if (Test-Path "$env:ProgramFiles\Google\Chrome\Application\chrome.exe") { &"C:\Program Files\WindowsPowerShell\Modules\tom42tools\2024.2.15\tom42-syspin.exe" "$env:ProgramFiles\Google\Chrome\Application\chrome.exe"}
     }
     if (((Get-ComputerInfo | Select-Object -expand OsName) -match 11)) { Set-w11basic }
