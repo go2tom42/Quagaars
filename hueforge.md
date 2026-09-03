@@ -3,7 +3,7 @@
 
 Bought Hueforge and all plugins, but the 3MF exporter does not seem to work  
 
-I have tried on 3 differed PC in my house all running Windows 11, all with the exact same results  
+I have tried on 3 different PC in my house all running Windows 11, all with the exact same results  
 
 Hueforge sees the plugin as signed but untrusted (Yes I hit I trust it when I installed it)  
 ![](https://i.imgur.com/FazieKk.png)
